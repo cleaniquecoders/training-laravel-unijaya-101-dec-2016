@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Auth;
+use App\Task;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('id', '!=', Auth::user()->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(25);
-        return view('users.index', compact('users'));
+        $tasks = Task::orderBy('created_at', 'desc')->paginate(25);
+        return view('tasks.index', compact('tasks'));
     }
 
     /**
@@ -28,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('tasks.create');
     }
 
     /**
@@ -39,14 +36,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|min:3|max:255',
-            'email' => 'required|email',
-            'password' => 'required|min:8|max:12|confirmed',
-        ]);
-        User::create($request->all());
-
-        return redirect()->route('users.index');
+        // $this->validate($request, [
+        //     'name' => 'required|min:3|max:255',
+        //     'email' => 'required|email',
+        //     'password' => 'required|min:8|max:12',
+        // ]);
+        Task::create($request->all());
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -57,8 +53,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('users.show', compact('user'));
+        $task = Task::find($id);
+        return view('tasks.show', compact('task'));
     }
 
     /**
@@ -69,8 +65,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('users.edit', compact('user'));
+        $task = Task::find($id);
+        return view('tasks.edit', compact('task'));
     }
 
     /**
@@ -82,8 +78,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        User::where('id', $id)->update($request->only('name', 'email'));
-        return redirect()->route('users.index');
+        Task::where('id', $id)->update($request->only('name', 'email'));
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -94,7 +90,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return redirect()->route('users.index');
+        Task::destroy($id);
+        return redirect()->route('tasks.index');
     }
 }

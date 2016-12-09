@@ -23,3 +23,4 @@ Route::get('/about-us', 'StaticController@aboutUs');
 Route::get('/contact-us', 'StaticController@contactUs');
 
 Route::resource('users', 'UserController');
+Route::resource('tasks', 'TaskController');
