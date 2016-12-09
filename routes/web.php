@@ -20,7 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/about-us', 'StaticController@aboutUs');
-Route::get('/contact-us', 'StaticController@contactUs');
+Route::get('/contact-us', 'StaticController@contactUs')->middleware('auth');
 
-Route::resource('users', 'UserController');
-Route::resource('tasks', 'TaskController');
+Route::group([
+    'middleware' => ['auth'],
+], function () {
+    Route::resource('users', 'UserController');
+    Route::resource('tasks', 'TaskController');
+});
