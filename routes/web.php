@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/about-us', 'StaticController@aboutUs');
 Route::get('/contact-us', 'StaticController@contactUs');
+
+Route::resource('users', 'UserController');
