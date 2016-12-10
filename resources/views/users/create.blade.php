@@ -10,23 +10,29 @@
             {!!
                 Former::horizontal_open()->method('POST')->route('users.store')->open()
             !!}
+                <div class="col-md-6 col-md-offset-3">
 
-                {!! Former::text('name')->label('Name') !!}
-                @include('components.forms.error',['name' => 'name'])
+                @include('components.forms.input',['name' => 'name', 'type' => 'text'])
 
-                {!! Former::text('email')->type('email')->value(old('email')) !!}
-                @include('components.forms.error',['name' => 'email'])
+                @include('components.forms.input',['name' => 'email', 'type' => 'email'])
 
-                {!! Former::text('password')->type('password')->value(old('password')) !!}
-                @include('components.forms.error',['name' => 'password'])
+                @include('components.forms.input',['name' => 'password', 'type' => 'password'])
 
-                {!! Former::text('password_confirmation')->label('Confirm Passsword')->type('password') !!}
-                @include('components.forms.error',['name' => 'password_confirmation'])
+                @include('components.forms.input',['name' => 'password_confirmation', 'type' => 'password'])
 
-                <button type="submit" class="btn btn-success">Create</button>
-                <a href="{{ route('users.index') }}" class="btn btn-danger">Cancel</a>
+                <hr>
 
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">
+                            Update
+                        </button>
+                        <a href="{{ route('users.index') }}" class="btn btn-danger">Back</a>
+                    </div>
+                </div>
             {!! Former::close() !!}
+
+            </div>
             </div>
         </div>
     </div>
