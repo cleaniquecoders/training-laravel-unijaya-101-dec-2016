@@ -46,7 +46,7 @@ class UserController extends Controller
         //     'password' => 'required|min:8|max:12|confirmed',
         // ]);
         User::create($request->all());
-
+        flash('User successfully created', 'success');
         return redirect()->route('users.index');
     }
 
