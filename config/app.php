@@ -170,6 +170,7 @@ return [
         CleaniqueCoders\ArtisanExtended\ArtisanExtendedServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Former\FormerServiceProvider::class,
+        Laratrust\LaratrustServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,7 +229,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Former' => Former\Facades\Former::class,
-        // 'Flash' => Laracasts\Flash\Flash::class,
+        'Laratrust' => Laratrust\LaratrustFacade::class,
+
     ],
 
 ];
